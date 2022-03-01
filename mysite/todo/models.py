@@ -17,9 +17,3 @@ class Task(models.Model):
 
     def get_absolute_url(self):
         return reverse("todo:task-detail", kwargs={"pk": self.pk})
-
-    def total_likes(self):
-        return self.likes.count()
-
-    def total_dislikes(self):
-        return self.dislikes.count()

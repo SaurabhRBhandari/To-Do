@@ -9,7 +9,7 @@
                   <small class="text-muted">{{ task.timestamp }}</small>
                 </div>
                 <h2><a class="article-title" href="{% url 'todo:task-detail' task.id%}">{{ task.task }}</a></h2>
-                <p class="article-content">{{ task.deadline }}</p>
+                <p class="article-content"><b>Due-</b> {{ task.deadline }}</p>
               </div>
             </article>
         {% endfor %}

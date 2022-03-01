@@ -3,8 +3,6 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import *
 from django.contrib.auth.models import User
 from django.views.generic import *
-from django.urls import reverse
-from django.contrib.auth.decorators import login_required
 
 
 class TaskListView(ListView):
