@@ -32,7 +32,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
 class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Task
-    fields = ['task', 'description', 'deadline']
+    fields = ['task', 'description', 'deadline', 'task_done']
 
     def form_valid(self, form):
         form.instance.user = self.request.user

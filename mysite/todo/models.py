@@ -11,7 +11,8 @@ class Task(models.Model):
     deadline=models.DateTimeField(default=timezone.now)
     task_image = models.ImageField(
         null=True, blank=True, upload_to='task_pics')
-
+    task_done=models.BooleanField(default=False)
+    
     def __str__(self):
         return self.task
 

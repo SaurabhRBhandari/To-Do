@@ -9,7 +9,12 @@
                   <small class="text-muted">{{ task.timestamp }}</small>
                 </div>
                 <h2><a class="article-title" href="{% url 'todo:task-detail' task.id%}">{{ task.task }}</a></h2>
-                <p class="article-content"><b>Due-</b> {{ task.deadline }}</p>
+                {% if task.task_done %}
+                    <p class="article-content">This task is done</p>      
+                
+                {%else%}  
+                  <p class="article-content"><b>Due-</b> {{ task.deadline }}</p>
+                {% endif %}
               </div>
             </article>
         {% endfor %}
