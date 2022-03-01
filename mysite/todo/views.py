@@ -13,26 +13,9 @@ class TaskListView(ListView):
     context_object_name = 'tasks'
     ordering = ['-timestamp']
     paginate_by = 5
-    
+
     def get_queryset(self):
         user = get_object_or_404(User, username=self.request.user)
-        return Task.objects.filter(user=user).order_by('-timestamp')
-    
-    def test_func(self):
-        task = self.get_object()
-        if self.request.user == task.user:
-            return True
-        return False
-
-
-class UserTaskListView(ListView):
-    model = Task
-    template_name = 'todo/user_task.html'
-    context_object_name = 'tasks'
-    paginate_by = 5
-
-    def get_queryset(self):
-        user = get_object_or_404(User, username=self.kwargs.get('username'))
         return Task.objects.filter(user=user).order_by('-timestamp')
 
 
@@ -42,7 +25,7 @@ class TaskDetailView(DetailView):
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
-    fields = ['task', 'description', 'task_image','deadline']
+    fields = ['task', 'description', 'task_image', 'deadline']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
@@ -51,7 +34,7 @@ class TaskCreateView(LoginRequiredMixin, CreateView):
 
 class TaskUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Task
-    fields = ['task', 'description','deadline']
+    fields = ['task', 'description', 'deadline']
 
     def form_valid(self, form):
         form.instance.user = self.request.user
