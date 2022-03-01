@@ -6,7 +6,6 @@
               <img class="rounded-circle article-img" src="{{task.user.profile.image.url}}">
               <div class="media-body">
                 <div class="article-metadata">
-                  <a class="mr-2" href="{% url 'todo:user-task' task.user.username%}">{{ task.user.username }}</a>
                   <small class="text-muted">{{ task.timestamp }}</small>
                 </div>
                 <h2><a class="article-title" href="{% url 'todo:task-detail' task.id%}">{{ task.task }}</a></h2>

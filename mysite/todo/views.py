@@ -13,6 +13,16 @@ class TaskListView(ListView):
     context_object_name = 'tasks'
     ordering = ['-timestamp']
     paginate_by = 5
+    
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.request.user)
+        return Task.objects.filter(user=user).order_by('-timestamp')
+    
+    def test_func(self):
+        task = self.get_object()
+        if self.request.user == task.user:
+            return True
+        return False
 
 
 class UserTaskListView(ListView):
@@ -28,11 +38,6 @@ class UserTaskListView(ListView):
 
 class TaskDetailView(DetailView):
     model = Task
-
-    #def get_context_data(self, **kwargs):
-    #    context = super().get_context_data(**kwargs)
-    #    q = get_object_or_404(Task, pk=self.kwargs.get('pk'))
-    #    return context
 
 
 class TaskCreateView(LoginRequiredMixin, CreateView):
